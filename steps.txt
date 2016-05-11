@@ -1,0 +1,8 @@
+Database:
+1- Enable Broker in SQL Server: alter database [<dbname>] set enable_broker with rollback immediate;
+2- Insert sample data: INSERT INTO DevTest (CampaignName, AffiliateName) VALUES('CampaignName3','AffiliateName3')
+
+SignalR:
+1- ADD STARTUP KEY IN Web.Config: <add key="owin:AppStartup" value="com.ai.ext.upwork.test1.App_Start.Startup"/>
+
+

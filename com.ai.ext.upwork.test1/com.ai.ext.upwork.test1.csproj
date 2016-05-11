@@ -193,6 +193,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_clicksList.cshtml" />
+    <Content Include="Views\Shared\_clickDetails.cshtml" />
+    <Content Include="Views\Shared\_clickAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

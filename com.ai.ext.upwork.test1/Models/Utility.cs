@@ -18,7 +18,7 @@ namespace com.ai.ext.upwork.test1.Models
             get { return ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString; }
         }
 
-        public static IEnumerable<ClicksTracker> GetAllClicks(string query)
+        public static List<ClicksTracker> GetAllClicks(string query)
         {
             var clicks = new List<ClicksTracker>();
 
@@ -44,9 +44,9 @@ namespace com.ai.ext.upwork.test1.Models
                             clicks.Add(item: new ClicksTracker
                             {
                                 CampaignName = reader["CampaignName"].ToString(),
-                                Clicks = (int)reader["Clicks"],
-                                Conversions = (int)reader["Conversions"],
-                                Impressions = (int)reader["Impressions"],
+                                //Clicks = (int)reader["Clicks"],
+                                //Conversions = (int)reader["Conversions"],
+                                //Impressions = (int)reader["Impressions"],
                                 AffiliateName = reader["AffiliateName"].ToString()//,
                                 //Date = (DateTime)reader["Date"]
                             });
@@ -156,9 +156,16 @@ namespace com.ai.ext.upwork.test1.Models
         }
 
         private static void dependency_OnChange(object sender, SqlNotificationEventArgs e)
-        {         
+        {
+            if (e.Info == SqlNotificationInfo.Invalid)
+            {
+                Console.WriteLine("The above notification query is not valid.");
+            }
             if (e.Type == SqlNotificationType.Change)
             {
+                Console.WriteLine("Notification Info: " + e.Info);
+                Console.WriteLine("Notification source: " + e.Source);
+                Console.WriteLine("Notification type: " + e.Type);
                 ClicksTrackerHub.SendClicks();
             }            
         }

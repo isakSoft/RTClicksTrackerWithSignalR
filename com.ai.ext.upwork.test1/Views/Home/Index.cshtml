@@ -3,7 +3,6 @@
 }
 
 
-
 <div class="row">
    
         <div class="col-md-12">
@@ -25,11 +24,10 @@
         // Create a function that the hub can call to broadcast messages.
         clicksTracker.client.updateClicksTracker = function () {
             getAllClicks();
-
         };
         // Start the connection.
         $.connection.hub.start().done(function () {
-            alert("connection started")
+            alert("SignalR Connection: STARTED")
             getAllClicks();
         }).fail(function (e) {
             alert(e);
@@ -51,5 +49,7 @@
 
         });
     }
+
+    
     </script>
 }

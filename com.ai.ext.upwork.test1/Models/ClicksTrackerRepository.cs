@@ -7,7 +7,7 @@ namespace com.ai.ext.upwork.test1.Models
 {
     public class ClicksTrackerRepository
     {
-        static IEnumerable<ClicksTracker> _clicks = new ConcurrentBag<ClicksTracker>();
+        static List<ClicksTracker> _clicks = new List<ClicksTracker>();
 
         public ClicksTrackerRepository()
         {
@@ -21,12 +21,15 @@ namespace com.ai.ext.upwork.test1.Models
             return _clicks;
         }
 
-        /*
+        
         public void Add(ClicksTracker item)
-        {            
-            _clicks.Add(item);
+        {
+            if (Utility.AddClickToDB(item))
+            {
+                _clicks.Add(item);
+            }            
         }
-
+        /*
         public ClicksTracker Find(string key)
         {
             ClicksTracker item;

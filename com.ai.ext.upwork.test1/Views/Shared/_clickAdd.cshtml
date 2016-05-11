@@ -1,0 +1,47 @@
+﻿
+<fieldset>
+    <div class="form-horizontal">
+        <div class="editor-label">
+            Campaign Name
+        </div>
+        <div class="editor-label">
+            <input type="text" id="txtCampaignName" />
+        </div>
+
+        <div class="editor-label">
+            Affiliate Name
+        </div>
+        <div class="editor-label">
+            <input type="text" id="txtAffiliateName" />
+        </div>
+
+        <div class="editor-label">
+            <br />
+            <input class="btn-default" type="button" id="btnSave" value="Save" />
+        </div>
+    </div>
+</fieldset>
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var CampaignName = $('#txtCampaignName').val();
+            var AffiliateName = $('#txtAffiliateName').val()
+            var click = { "CampaignName": CampaignName, "AffiliateName": AffiliateName };
+            //var click = { "CampaignName": "test1", "AffiliateName": "Test2" };
+            var jsonOfClick = JSON.stringify(click);
+
+            $("#btnSave").click(function () {
+                $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "AddClick", // Controller/View
+                    data: jsonOfClick,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    //processData: false,
+                    async: false
+                });
+            });
+        });
+    </script>

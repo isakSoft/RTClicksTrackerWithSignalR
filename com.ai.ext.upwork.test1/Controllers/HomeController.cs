@@ -10,6 +10,7 @@ namespace com.ai.ext.upwork.test1.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ClicksTrackerRepository _repository = new ClicksTrackerRepository();
         public ActionResult Index()
         {
             return View();
@@ -17,8 +18,22 @@ namespace com.ai.ext.upwork.test1.Controllers
 
         public ActionResult GetClicks()
         {
-            ClicksTrackerRepository repository = new ClicksTrackerRepository();
-            return PartialView("_clicksList", repository.GetAll());
+            return PartialView("_clicksList", _repository.GetAll());
         }
-    }
+
+        public ActionResult AddClick()
+        {
+            return PartialView("_clickAdd");
+        }
+
+        [HttpPost]
+        public void AddClick(ClicksTracker item)
+        {
+            // str = Convert.ToString(jsonOfClick);
+            //After successful addition the SignalR broadcast the data
+            //No need to return view
+            _repository.Add(item);
+            return;
+        }
+    }       
 }
