@@ -22,26 +22,28 @@
     </div>
 </fieldset>
 
-    <script src="~/Scripts/jquery-1.10.2.js"></script>    
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var CampaignName = $('#txtCampaignName').val();
-            var AffiliateName = $('#txtAffiliateName').val()
-            var click = { "CampaignName": CampaignName, "AffiliateName": AffiliateName };
-            //var click = { "CampaignName": "test1", "AffiliateName": "Test2" };
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    
+        
+        //var click = { "CampaignName": CampaignName, "AffiliateName": AffiliateName };
+        
+
+        $("#btnSave").click(function () {
+            var click = { "CampaignName": $('#txtCampaignName').val(), "AffiliateName": $('#txtAffiliateName').val() };
             var jsonOfClick = JSON.stringify(click);
 
-            $("#btnSave").click(function () {
-                $.ajax(
-                {
-                    type: "POST", //HTTP POST Method
-                    url: "AddClick", // Controller/View
-                    data: jsonOfClick,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    //processData: false,
-                    async: false
-                });
+            $.ajax(
+            {
+                type: "POST", //HTTP POST Method
+                url: "AddClick", // Controller/View
+                data: jsonOfClick,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                //processData: false,
+                async: false
             });
         });
-    </script>
+   
+</script>

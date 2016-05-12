@@ -11,43 +11,48 @@ namespace com.ai.ext.upwork.test1.Models
 
         public ClicksTrackerRepository()
         {
-            
+
         }
 
         public IEnumerable<ClicksTracker> GetAll()
         {
-            string selectQuery = "SELECT [CampaignName], [Date], [Clicks], [Conversions], [Impressions], [AffiliateName] FROM[dbo].[DevTest]";
+            string selectQuery = "SELECT [ID], [CampaignName], [Date], [Clicks], [Conversions], [Impressions], [AffiliateName] FROM[dbo].[DevTest]";
             _clicks = Utility.GetAllClicks(selectQuery);
             return _clicks;
         }
 
-        
+
         public void Add(ClicksTracker item)
         {
             if (Utility.AddClickToDB(item))
             {
                 _clicks.Add(item);
-            }            
-        }
-        /*
-        public ClicksTracker Find(string key)
-        {
-            ClicksTracker item;
-            _clicks.TryPeek(out item);
-            return item;
+            }
         }
 
+        public ClicksTracker Find(int Id)
+        {
+            string selectQuery = "SELECT  [ID], [CampaignName], [Date], [Clicks], [Conversions], [Impressions], [AffiliateName] FROM[dbo].[DevTest] WHERE [Id]=" + Id;
+            _clicks = Utility.GetAllClicks(selectQuery);
+            ClicksTracker item = _clicks[0];
+            return item;
+        }
+        /*
         public ClicksTracker Remove(string key)
         {
             ClicksTracker item;
             _clicks.TryTake(out item);
             return item;
         }
-
-        public void Update(ClicksTracker item)
-        {            
-            _clicks.TryPeek(out item);            
-        }
         */
+        public bool Update(ClicksTracker item)
+        {
+            if (Utility.UpdateClickToDB(item))
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }
