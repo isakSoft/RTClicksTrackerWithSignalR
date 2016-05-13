@@ -1,0 +1,47 @@
+﻿<div ng-app="app">
+    <div ng-controller="ClicksTrackerController">
+        <h1> lists </h1>
+        <!-- Show existing friends. -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>CampaignName</th>
+                    <th>Date</th>
+                    <th>Clicks</th>
+                    <th>Conversions</th>
+                    <th>Impressions</th>
+                    <th>AffiliateName</th>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="click in clicks">
+                    <td>{{ click.CampaignName }}</td>
+                    <td>{{ click.Date }} </td>
+                    <td>{{ click.Clicks }} </td>
+                    <td>{{ click.Conversions }} </td>
+                    <td>{{ click.Impressions }} </td>
+                    <td>{{ click.AffiliateName }} </td>
+                    <td><a ng-click="removeClick( click )">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Add a new friend to the list. -->
+        <form class="form-group" ng-submit="addClick()">
+            <label for="title">CampaignName</label>
+            <input class="form-control" name="title" type="text" ng-model="form.CampaignName" size="20" /> <br />
+            <label for="desc">Clicks</label>
+            <input class="form-control" name="desc" type="text" ng-model="form.Clicks" size="20" /> <br />
+            <label for="price">Conversions</label>
+            <input class="form-control" name="price" type="text" ng-model="form.Conversions" size="20" /> <br />
+            <label for="cat">Impressions</label>
+            <input class="form-control" name="cat" type="text" ng-model="form.Impressions" size="20" /> <br /><br />
+            <label for="cat">AffiliateName</label>
+            <input class="form-control" name="cat" type="text" ng-model="form.AffiliateName" size="20" /> <br /><br />
+            <input class="btn" type="submit" value="Add Click" />
+        </form>
+        <!-- Initialize scripts. -->
+        <script type="text/javascript" src="~/Scripts/app/angular.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/app/server/controllers.js"></script>
+    </div>
+</div>

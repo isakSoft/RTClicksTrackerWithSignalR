@@ -202,6 +202,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\app\angular.min.js" />
+    <Content Include="Scripts\app\server\controllers.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\MyPC.pubxml" />
@@ -238,10 +240,12 @@
     <Content Include="Views\Shared\_clickAdd.cshtml" />
     <Content Include="Views\Shared\_clickDetails.cshtml" />
     <Content Include="Views\Shared\_clickEdit.cshtml" />
+    <Content Include="Views\Home\Clicks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ClicksTracker\" />
+    <Folder Include="Scripts\app\client\" />
+    <Folder Include="Views\Clicks\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

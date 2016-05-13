@@ -8,7 +8,7 @@ namespace com.ai.ext.upwork.test1.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("Clicks");
         }
     }       
 }
