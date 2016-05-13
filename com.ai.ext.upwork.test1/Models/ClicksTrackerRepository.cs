@@ -1,58 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Concurrent;
-using System.Web;
+using System.Data.Entity;
+
+using com.ai.ext.upwork.test1.Hubs;
 
 namespace com.ai.ext.upwork.test1.Models
 {
-    public class ClicksTrackerRepository
+    public class ClicksTrackerRepository : IRepository
     {
-        static List<ClicksTracker> _clicks = new List<ClicksTracker>();
+        private ClicksTrackerDbContext context = new ClicksTrackerDbContext();
 
-        public ClicksTrackerRepository()
+        public IEnumerable<ClicksTracker> ClicksTrackers
         {
-
+            get{ return context.ClicksTrackers; }
         }
 
-        public IEnumerable<ClicksTracker> GetAll()
+        //This implements both ADD & UPDATE functionalities
+        public int SaveClicksTracker(ClicksTracker item)
         {
-            string selectQuery = "SELECT [ID], [CampaignName], [Date], [Clicks], [Conversions], [Impressions], [AffiliateName] FROM[dbo].[DevTest]";
-            _clicks = Utility.GetAllClicks(selectQuery);
-            return _clicks;
-        }
-
-
-        public void Add(ClicksTracker item)
-        {
-            if (Utility.AddClickToDB(item))
-            {
-                _clicks.Add(item);
+            if(item.ID == 0) { //ADD record to DB
+                context.ClicksTrackers.Add(item);
             }
-        }
-
-        public ClicksTracker Find(int Id)
-        {
-            string selectQuery = "SELECT  [ID], [CampaignName], [Date], [Clicks], [Conversions], [Impressions], [AffiliateName] FROM[dbo].[DevTest] WHERE [Id]=" + Id;
-            _clicks = Utility.GetAllClicks(selectQuery);
-            ClicksTracker item = _clicks[0];
-            return item;
-        }
-        /*
-        public ClicksTracker Remove(string key)
-        {
-            ClicksTracker item;
-            _clicks.TryTake(out item);
-            return item;
-        }
-        */
-        public bool Update(ClicksTracker item)
-        {
-            if (Utility.UpdateClickToDB(item))
+            else
             {
-                return true;
-            }
-            return false;
-        }
+                //UPDATE record to DB
+                ClicksTracker DbEntry = context.ClicksTrackers.Find(item.ID);
+                if(DbEntry == null)
+                {
+                    DbEntry.CampaignName = item.CampaignName;
+                    DbEntry.Date = Convert.ToDateTime(DateTime.Now);
+                    DbEntry.Clicks = item.Clicks;
+                    DbEntry.Conversions = item.Conversions;
+                    DbEntry.Impressions = item.Impressions;
+                    DbEntry.AffiliateName = item.AffiliateName;
 
+                    if(context.Entry(DbEntry).State == EntityState.Modified)
+                    {
+                        ClicksTrackerHub.UpdateClicks();
+                    }
+                }               
+            }
+            context.SaveChanges();
+            ClicksTrackerHub.AddClicks();
+            return 1;
+        }
+        
+        public ClicksTracker DeleteClicksTracker(int itemId)
+        {
+            ClicksTracker DbEntry = context.ClicksTrackers.Find(itemId);
+            if(DbEntry != null)
+            {
+                context.ClicksTrackers.Remove(DbEntry);         
+            }
+            context.SaveChangesAsync();
+            ClicksTrackerHub.DeleteClicks();
+            return DbEntry;
+        }
     }
 }

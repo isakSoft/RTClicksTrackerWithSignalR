@@ -17,6 +17,30 @@ namespace com.ai.ext.upwork.test1.Hubs
         {
             IHubContext context = GlobalHost.ConnectionManager.GetHubContext<ClicksTrackerHub>();
             //SIGNED TO CLIENT updateClicksTracker FUNC
+            context.Clients.All.updateClicksTracker();           
+        }
+
+        [HubMethodName("addClicks")]
+        public static void AddClicks()
+        {
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<ClicksTrackerHub>();
+            //SIGNED TO CLIENT updateClicksTracker FUNC
+            context.Clients.All.updateClicksTracker();
+        }
+
+        [HubMethodName("updateClicks")]
+        public static void UpdateClicks()
+        {
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<ClicksTrackerHub>();
+            //SIGNED TO CLIENT updateClicksTracker FUNC
+            context.Clients.All.updateClicksTracker();
+        }
+
+        [HubMethodName("deleteClicks")]
+        public static void DeleteClicks()
+        {
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<ClicksTrackerHub>();
+            //SIGNED TO CLIENT updateClicksTracker FUNC
             context.Clients.All.updateClicksTracker();
         }
     }

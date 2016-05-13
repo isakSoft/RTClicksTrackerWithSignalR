@@ -1,16 +1,28 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
 namespace com.ai.ext.upwork.test1.Models
 {
-    public class ClicksTracker
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("DevTest")]
+    public partial class ClicksTracker
     {
-        public int Id { get; set; }        
+        public int ID { get; set; }
+
+        [StringLength(255)]
         public string CampaignName { get; set; }
-        public Nullable<DateTime> Date { get; set; }
-        public Nullable<int> Clicks { get; set; }
-        public Nullable<int> Conversions { get; set; }
-        public Nullable<int> Impressions { get; set; }
+
+        public DateTime? Date { get; set; }
+
+        public int? Clicks { get; set; }
+
+        public int? Conversions { get; set; }
+
+        public int? Impressions { get; set; }
+
+        [StringLength(255)]
         public string AffiliateName { get; set; }
     }
 }

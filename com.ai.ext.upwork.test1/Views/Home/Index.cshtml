@@ -6,7 +6,7 @@
 <div class="row">
    
         <div class="col-md-12">
-            <div id="clicksTable"></div>
+            <div id="clicksTable"></div>            
         </div>   
 </div>
 
@@ -18,38 +18,37 @@
     <script type="text/javascript">
     $(function () {
         // Declare a proxy to reference the hub.
-        var clicksTracker = $.connection.ClicksTrackerHub;
+        var connection = $.connection;
+        var hub = $.connection.ClicksTrackerHub;            
 
         //debugger;
         // Create a function that the hub can call to broadcast messages.
-        clicksTracker.client.updateClicksTracker = function () {
-            getAllClicks();
+        hub.client.updateClicksTracker = function () {
+            getClicks();
         };
         // Start the connection.
-        $.connection.hub.start().done(function () {
-            alert("SignalR Connection: STARTED")
-            getAllClicks();
+        connection.hub.start().done(function () {
+            //alert("SignalR Connection: STARTED")
+            getClicks();
         }).fail(function (e) {
             alert(e);
         });
     });
 
 
-    function getAllClicks()
+    function getClicks()
     {
         var tbl = $('#clicksTable');
         $.ajax({
-            url: '/Home/GetClicks',
-            contentType: 'application/html ; charset:utf-8',
+            url: 'api/ClicksTracker/',
             type: 'GET',
-            dataType: 'html'
+            contentType: "application/json; charset=utf-8",
         }).success(function (result) {
             tbl.empty().append(result);
-        }).error(function () {
-
+        }).error(function (xhr, status, error) {
+            alert("Error: " + xhr.responseText);
         });
     }
-
     
     </script>
 }

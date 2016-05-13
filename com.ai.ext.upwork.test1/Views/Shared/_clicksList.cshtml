@@ -1,4 +1,4 @@
-﻿@model IEnumerable<com.ai.ext.upwork.test1.Models.ClicksTracker>
+﻿@model IEnumerable<com.ai.ext.upwork.test1.Models.ClicksTracker2>
 
 <br />
 <p>
@@ -29,7 +29,6 @@
 
 @foreach (var item in Model)
 {
-    @Html.HiddenFor(modelItem => item.Id)
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.CampaignName)

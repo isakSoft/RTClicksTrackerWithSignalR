@@ -18,9 +18,12 @@ namespace com.ai.ext.upwork.test1.Models
             get { return ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString; }
         }
 
-        public static List<ClicksTracker> GetAllClicks(string query)
+        /* DB Operations
+         * 
+         * 
+        public static List<ClicksTracker2> GetAllClicks(string query)
         {
-            var clicks = new List<ClicksTracker>();
+            var clicks = new List<ClicksTracker2>();
 
             try
             {
@@ -41,7 +44,7 @@ namespace com.ai.ext.upwork.test1.Models
 
                         while (reader.Read())
                         {
-                            clicks.Add(item: new ClicksTracker
+                            clicks.Add(item: new ClicksTracker2
                             {
                                 Id = (int)reader["ID"],
                                 CampaignName = reader["CampaignName"].ToString(),
@@ -55,7 +58,7 @@ namespace com.ai.ext.upwork.test1.Models
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //Console.WriteLine(ex);
                 ClicksTrackerHub.SendClicks();
@@ -64,7 +67,7 @@ namespace com.ai.ext.upwork.test1.Models
             return clicks;
         }
 
-        public static bool AddClickToDB(ClicksTracker item)
+        public static bool AddClickToDB(ClicksTracker2 item)
         {
             int rowsInserted = 0;
             string insertQuery = @"INSERT INTO DevTest (CampaignName, Clicks, Conversions, Impressions, AffiliateName)";
@@ -94,7 +97,7 @@ namespace com.ai.ext.upwork.test1.Models
 
                         rowsInserted = command.ExecuteNonQuery();
 
-                        if(rowsInserted == 1)
+                        if (rowsInserted == 1)
                         {
                             return true;
                         }
@@ -110,7 +113,7 @@ namespace com.ai.ext.upwork.test1.Models
             return false;
         }
 
-        public static bool UpdateClickToDB(ClicksTracker item)
+        public static bool UpdateClickToDB(ClicksTracker2 item)
         {
             int rowsUpdated = 0;
             string updateQuery = @"UPDATE DevTest SET CampaignName = @CampaignName,";
@@ -118,7 +121,7 @@ namespace com.ai.ext.upwork.test1.Models
             updateQuery += "Conversions = @Conversions,";
             updateQuery += "Impressions = @Impressions,";
             updateQuery += "AffiliateName = @AffiliateName ";
-            updateQuery += "WHERE Id = @Id";           
+            updateQuery += "WHERE Id = @Id";
 
             try
             {
@@ -178,7 +181,10 @@ namespace com.ai.ext.upwork.test1.Models
                 //Console.WriteLine("Notification source: " + e.Source);
                 //Console.WriteLine("Notification type: " + e.Type);
                 ClicksTrackerHub.SendClicks();
-            }            
+            }
         }
+        *
+        *
+        */
     }
 }
