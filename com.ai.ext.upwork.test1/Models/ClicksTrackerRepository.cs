@@ -28,7 +28,7 @@ namespace com.ai.ext.upwork.test1.Models
             {
                 //UPDATE record to DB
                 ClicksTracker DbEntry = context.ClicksTrackers.Find(item.ID);
-                if(DbEntry == null)
+                if(DbEntry != null)
                 {
                     DbEntry.CampaignName = item.CampaignName;
                     DbEntry.Date = Convert.ToDateTime(DateTime.Now);

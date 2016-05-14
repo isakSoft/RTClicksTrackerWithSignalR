@@ -130,7 +130,8 @@ app.factory("$clickService", ['$rootScope', '$http', '$q', function ($rootScope,
 
 app.controller("ClicksTrackerController", ['$scope', '$rootScope', '$clickService', function ($scope, $rootScope, $clickService) {
     // I contain the list of friends to be rendered.
-    $scope.clicks = [];    
+    $scope.clicks = [];
+    $scope.click = "";
 
     var ClickTracker = {
         ID: "",
@@ -165,8 +166,9 @@ app.controller("ClicksTrackerController", ['$scope', '$rootScope', '$clickServic
     // ---
 
     // I process the add-friend form.
-    $scope.addClick = function () {
+    $scope.addClick = function (click) {
         var _clicksTracker = {
+            Id: click.ID,
             CampaignName: $scope.form.CampaignName,
             Clicks: $scope.form.Clicks,
             Conversions: $scope.form.Conversions,
@@ -179,13 +181,9 @@ app.controller("ClicksTrackerController", ['$scope', '$rootScope', '$clickServic
         // this case, I'm just logging to the console to keep things very
         // simple for the demo.
         $clickService.addClick(_clicksTracker)
-            .then(
-                loadRemoteData,
-                function (errorMessage) {
+            .then(loadRemoteData,function (errorMessage) {
                     console.warn(errorMessage);
-                }
-            )
-        ;
+                });
         // Reset the form once values have been consumed.
 
         $scope.form.CampaignName = "";
@@ -195,14 +193,31 @@ app.controller("ClicksTrackerController", ['$scope', '$rootScope', '$clickServic
         $scope.form.AffiliateName = "";
     };
 
-    $scope.getClick = function (clickId) {
-        $scope.click = $scope.clicks[clickId];
+    $scope.getClick = function (clickDt) {        
+        $scope.click = clickDt;
         var clickDetail = $("#clickDetails")
         clickDetail.show();
         clickDetail.dialog();
         clickDetail.focus();
     }
 
+    $scope.updateClickFields = function (clickDt) {
+        $scope.click = clickDt;
+        $("#frmAdd").hide();
+        $("#clickDetails").hide();
+        var clickUpdate = $("#clickUpdate")
+        clickUpdate.show();
+        clickUpdate.dialog();
+        clickUpdate.focus();
+    }
+
+    $scope.updateClick = function (clickDt) {
+        var _data = clickDt;
+        $clickService.addClick(data)
+            .then(loadRemoteData, function (errorMessage) {
+                console.warn(errorMessage);
+            });
+    }
     // I remove the given friend from the current collection.
     $scope.removeClick = function (clicksTracker) {
         // Rather than doing anything clever on the client-side, I'm just

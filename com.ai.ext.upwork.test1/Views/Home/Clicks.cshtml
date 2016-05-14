@@ -25,22 +25,23 @@
                     <td>{{ click.Conversions }} </td>
                     <td>{{ click.Impressions }} </td>
                     <td>{{ click.AffiliateName }} </td>
-                    <td><a ng-click="getClick( click.ID )">Details</></td>
+                    
+                    <td><a ng-click="getClick( click )">Details</></td>
                     <td><a ng-click="removeClick( click.ID )">Delete</a></td>
                 </tr>
             </tbody>
         </table>
         <!-- Add a new friend to the list. -->
         <div id="frmAdd">
-            <form class="form-group" ng-submit="addClick()">
+            <form class="form-group" ng-submit="addClick( form )">
                 <label for="title">CampaignName</label>
                 <input class="form-control" name="title" type="text" ng-model="form.CampaignName" size="20" /> <br />
                 <label for="desc">Clicks</label>
-                <input class="form-control" name="desc" type="text" ng-model="form.Clicks" size="20" /> <br />
+                <input class="form-control" name="desc" type="number" ng-model="form.Clicks" size="20" /> <br />
                 <label for="price">Conversions</label>
-                <input class="form-control" name="price" type="text" ng-model="form.Conversions" size="20" /> <br />
+                <input class="form-control" name="price" type="number" ng-model="form.Conversions" size="20" /> <br />
                 <label for="cat">Impressions</label>
-                <input class="form-control" name="cat" type="text" ng-model="form.Impressions" size="20" /> <br /><br />
+                <input class="form-control" name="cat" type="number" ng-model="form.Impressions" size="20" /> <br /><br />
                 <label for="cat">AffiliateName</label>
                 <input class="form-control" name="cat" type="text" ng-model="form.AffiliateName" size="20" /> <br /><br />
                 <input class="btn" type="submit" value="Add Click" />
@@ -56,15 +57,34 @@
                         <td>Value</td>
                     </tr>
                 </thead>
-                <tbody ng-model="click">                   
+                <tbody ng-model="click">
                     <tr><td>CampaignName: </td><td>{{ click.CampaignName }}</td></tr>
                     <tr><td>Date: </td><td>{{ click.Date }} </td></tr>
                     <tr><td>Clicks: </td><td>{{ click.Clicks }} </td></tr>
                     <tr><td>Conversions: </td><td>{{ click.Conversions }} </td></tr>
                     <tr><td>Impressions: </td><td>{{ click.Impressions }} </td></tr>
-                    <tr><td>AffiliateName: </td><td>{{ click.AffiliateName }} </td></tr>                                          
+                    <tr><td>AffiliateName: </td><td>{{ click.AffiliateName }} </td></tr>
+                    <tr><td><input type="button" value="Edit" ng-click="updateClickFields( click )" /></td></tr>
                 </tbody>
             </table>
+        </div>
+
+        <div id="clickUpdate">
+            <span>Click Details</span>
+            
+            <form class="form-group" ng-submit="addClick( click )">
+                <label for="title">Old CampaignName: {{ click.CampaignName }}</label>
+                <input class="form-control" name="title" type="text" ng-model="form.CampaignName" size="20" /> <br />
+                <label for="desc">Old Clicks: {{ click.Clicks }}</label>
+                <input class="form-control" name="desc" type="number" ng-model="form.Clicks" size="20" /> <br />
+                <label for="price">Old Conversions: {{ click.Conversions }}</label>
+                <input class="form-control" name="price" type="number" ng-model="form.Conversions" size="20" /> <br />
+                <label for="cat">Old Impressions: {{ click.Impressions }}</label>
+                <input class="form-control" name="cat" type="number" ng-model="form.Impressions" size="20" /> <br /><br />
+                <label for="cat">Old AffiliateName: {{ click.AffiliateName }}</label>
+                <input class="form-control" name="cat" type="text" ng-model="form.AffiliateName" size="20" /> <br /><br />
+                <input class="btn" type="submit" value="Update Click" />
+            </form>
         </div>
         <!-- Initialize scripts. -->
         <!-- SignalR-->
@@ -75,6 +95,7 @@
             $(function () {
                 $("#frmAdd").hide();
                 $("#clickDetails").hide();
+                $("#clickUpdate").hide();
             });
 
             function showFrmAdd() {
