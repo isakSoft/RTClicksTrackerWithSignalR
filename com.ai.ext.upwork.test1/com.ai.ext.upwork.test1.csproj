@@ -189,6 +189,7 @@
     </Compile>
     <Compile Include="Hubs\ClicksTrackerHub.cs" />
     <Compile Include="Models\ClicksTrackerDbContext.cs" />
+    <Compile Include="Models\ClicksTrackerDbInitializer.cs" />
     <Compile Include="Models\ClicksTrackerRepository.cs" />
     <Compile Include="Models\ClicksTracker.cs" />
     <Compile Include="Models\IRepository.cs" />
@@ -198,6 +199,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -212,6 +214,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery.validate.js" />

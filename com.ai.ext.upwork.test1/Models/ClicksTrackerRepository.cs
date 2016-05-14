@@ -12,7 +12,10 @@ namespace com.ai.ext.upwork.test1.Models
 
         public IEnumerable<ClicksTracker> ClicksTrackers
         {
-            get{ return context.ClicksTrackers; }
+            get{
+                //ClicksTrackerHub.UpdateClicks();
+                return context.ClicksTrackers;
+            }
         }
 
         //This implements both ADD & UPDATE functionalities
@@ -36,12 +39,12 @@ namespace com.ai.ext.upwork.test1.Models
 
                     if(context.Entry(DbEntry).State == EntityState.Modified)
                     {
-                        ClicksTrackerHub.UpdateClicks();
+                        ClicksTrackerHub.UpdateClicks(DbEntry);
                     }
                 }               
             }
             context.SaveChanges();
-            ClicksTrackerHub.AddClicks();
+            ClicksTrackerHub.AddClicks(item);
             return 1;
         }
         

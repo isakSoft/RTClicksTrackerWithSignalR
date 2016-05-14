@@ -40,6 +40,7 @@ namespace com.ai.ext.upwork.test1.Controllers
             }
         }
         
+        [HttpDelete]
         public void DeleteClick(int Id)
         {
             Repository.DeleteClicksTracker(Id);
