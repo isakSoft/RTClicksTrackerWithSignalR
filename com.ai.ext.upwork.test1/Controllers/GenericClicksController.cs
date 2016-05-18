@@ -34,6 +34,7 @@ namespace com.ai.ext.upwork.test1.Controllers
             return item == null ? (IHttpActionResult)BadRequest("No record found") : Ok(item);            
         }
 
+        [HttpPost]
         public IHttpActionResult AddClick(ClicksTracker item)
         {
             if (ModelState.IsValid)
@@ -48,10 +49,11 @@ namespace com.ai.ext.upwork.test1.Controllers
             }
         }
 
+        [HttpPut]
         public IHttpActionResult UpdateClick(ClicksTracker item)
         {
             if (ModelState.IsValid)
-            {
+            {                
                 uow.Repository<ClicksTracker>().Attach(item);
                 uow.SaveChanges();
                 return Ok();
@@ -62,6 +64,7 @@ namespace com.ai.ext.upwork.test1.Controllers
             }
         }
 
+        [HttpDelete]
         public void DeleteClick(int Id)
         {
             ClicksTracker item = uow.Repository<ClicksTracker>().Get(c => c.ID == Id);

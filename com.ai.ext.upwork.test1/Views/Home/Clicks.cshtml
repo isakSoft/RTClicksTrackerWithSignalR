@@ -3,7 +3,7 @@
         <h1> lists </h1>
         <!-- Show existing friends. -->
         <div>
-            <input id="btnFrmAdd" type="button" value="Add Click" onclick="showFrmAdd()"/>
+            <input id="btnFrmAdd" type="button" value="Add Click" onclick="showFrmAdd()" />
         </div>
         <table id="tblCliks" class="table">
             <thead>
@@ -25,7 +25,7 @@
                     <td>{{ click.Conversions }} </td>
                     <td>{{ click.Impressions }} </td>
                     <td>{{ click.AffiliateName }} </td>
-                    
+
                     <td><a ng-click="getClick( click )">Details</></td>
                     <td><a ng-click="removeClick( click.ID )">Delete</a></td>
                 </tr>
@@ -51,8 +51,8 @@
         <div id="clickDetails">
             <span>Click Details</span>
             <table id="tblCliks" class="table">
-                <thead>                    
-                    <tr>                        
+                <thead>
+                    <tr>
                         <th>Title</th>
                         <td>Value</td>
                     </tr>
@@ -71,8 +71,8 @@
 
         <div id="clickUpdate">
             <span>Click Details</span>
-            
-            <form class="form-group" ng-submit="addClick( click )">
+
+            <form class="form-group" ng-submit="updateClick( click )">
                 <label for="title">Old CampaignName: {{ click.CampaignName }}</label>
                 <input class="form-control" name="title" type="text" ng-model="form.CampaignName" size="20" /> <br />
                 <label for="desc">Old Clicks: {{ click.Clicks }}</label>
@@ -89,9 +89,9 @@
         <!-- Initialize scripts. -->
         <!-- SignalR-->
         @section Scripts{
-        <script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
-        <script src="/signalr/hubs"></script>
-        <script type="text/javascript">
+            <script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
+            <script src="/signalr/hubs"></script>
+            <script type="text/javascript">
             $(function () {
                 $("#frmAdd").hide();
                 $("#clickDetails").hide();
@@ -104,7 +104,7 @@
                 form.dialog();
                 form.focus();
             }
-        </script>
+            </script>
         }
         <!-- AngularJS -->
         <script type="text/javascript" src="~/Scripts/app/angular.min.js"></script>

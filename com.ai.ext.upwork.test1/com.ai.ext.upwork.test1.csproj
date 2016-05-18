@@ -182,7 +182,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ClicksTrackerController.cs" />
     <Compile Include="Controllers\GenericClicksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -190,6 +189,7 @@
     </Compile>
     <Compile Include="Hubs\ClicksTrackerHub.cs" />
     <Compile Include="Models\GenericUnitOfWork.cs" />
+    <Compile Include="Models\lHubs.cs" />
     <Compile Include="Models\SampleDbContext.cs" />
     <Compile Include="Models\ClicksTracker.cs" />
     <Compile Include="Models\GenericRepository.cs" />

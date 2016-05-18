@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+using com.ai.ext.upwork.test1.Hubs;
+
 namespace com.ai.ext.upwork.test1.Models
 {
     public class GenericUnitOfWork : IDisposable
@@ -31,6 +33,7 @@ namespace com.ai.ext.upwork.test1.Models
         public void SaveChanges()
         {
             context.SaveChanges();
+            ClicksTrackerHub.SendClicks();
         }
 
         private bool disposed = false;

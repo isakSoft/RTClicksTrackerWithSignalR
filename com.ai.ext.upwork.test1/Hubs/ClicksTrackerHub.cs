@@ -2,14 +2,12 @@
 using com.ai.ext.upwork.test1.Models;
 using Microsoft.AspNet.SignalR.Hubs;
 
-using com.ai.ext.upwork.test1.Models;
-
 namespace com.ai.ext.upwork.test1.Hubs
 {
     [HubName("ClicksTrackerHub")]
     public class ClicksTrackerHub : Hub
     {
-        protected static IHubContext context = GlobalHost.ConnectionManager.GetHubContext<ClicksTrackerHub>();
+        private static IHubContext context = GlobalHost.ConnectionManager.GetHubContext<ClicksTrackerHub>();
         public void Hello()
         {
             Clients.All.hello();

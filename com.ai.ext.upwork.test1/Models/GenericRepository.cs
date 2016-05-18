@@ -40,7 +40,11 @@ namespace com.ai.ext.upwork.test1.Models
 
         public void Attach(T entity)
         {
-            _dbSet.Attach(entity);
+            if(context.Entry(entity).State == EntityState.Detached)
+            {
+                _dbSet.Attach(entity);
+                context.Entry(entity).State = EntityState.Modified;
+            }            
         }
         
         public void Delete(T entity)
