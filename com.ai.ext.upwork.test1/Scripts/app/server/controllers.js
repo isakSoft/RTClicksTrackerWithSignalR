@@ -113,7 +113,7 @@ app.service("clickService", function ($http, $q) {
     function addClick(ClicksTracker) {
         var request = $http({
             method: "post",
-            url: "api/ClicksTracker/",
+            url: "api/GenericClicks/",
             /*params: {action: "add"},*/
             data: ClicksTracker
         });
@@ -125,7 +125,7 @@ app.service("clickService", function ($http, $q) {
 
         var request = $http({
             method: "get",
-            url: "api/ClicksTracker/"
+            url: "api/GenericClicks/"
             /*
             params: {
                 action: "get"
@@ -141,7 +141,7 @@ app.service("clickService", function ($http, $q) {
 
         var request = $http({
             method: "delete",
-            url: "api/ClicksTracker/",
+            url: "api/GenericClicks/",
             params: {
                 Id: clicksTracker.Id
             },
