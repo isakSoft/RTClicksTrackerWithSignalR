@@ -10,6 +10,8 @@ namespace com.ai.ext.upwork.test1.Models
         public SampleDbContext()
             : base("name=SampleDbContext")
         {
+           // Database.SetInitializer<ClicksTrackerDbContext>(new ClicksTrackerDbInitializer());
+           // Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
 
         public virtual DbSet<ClicksTracker> ClicksTrackers { get; set; }
